@@ -10,7 +10,7 @@ export interface ITodo {
 
 
 export const Todos = () => {
-    const [todos, setTodos] = useState<null | ITodo[]>([]);
+    const [todos, setTodos] = useState<null | ITodo[] | []>(null);
     const [newTodo, setNewTodo] = useState<string>('')
 
     const url = 'https://jsonplaceholder.typicode.com/users/1/todos'
@@ -23,39 +23,58 @@ export const Todos = () => {
     }
 
     useEffect(() => {
-        // fetchTodos()
+        fetchTodos()
     }, [])
 
-    const handleInput = (input:string) => {
-        setNewTodo(input)
-    }
+    
     const addTodo = () => {
-        const todoAdded = {userId: 1, id: Math.floor(Math.random() * 100), title: newTodo, completed: false }
+        const todoAdded: ITodo = {userId: 1, id: Math.floor(Math.random() * 100), title: newTodo, completed: false }
         if(todos !== null) {
             const newTodos = [...todos, todoAdded]
-            console.log(typeof newTodos);
-            
             setTodos(newTodos)
-        }
-        const arr: ITodo[] = [...todoAdded]
-        debugger
-        console.log(arr);
+            return;
+        } 
+        const arr: ITodo[] = [todoAdded]
         
-        // setTodos([...todoAdded])
+        setTodos(arr)
+    }
+
+
+    const completedTodo = (id:number) => {
+        const updatedTodo:ITodo[]  = Object.assign([], todos)
+        const  copiedTodo:ITodo = Object.assign({},updatedTodo[id] )
+        copiedTodo.completed = true;
+        updatedTodo[id] = completedTodo;
+        setTodos(updatedTodo)
+
+        
+
 
     }
+    const changeTitle = () => {
+
+    }
+    const deleteTodo = () => {
+
+    }
+
+    
+
+
 
     return (
         <>
         <h3>Add new todo</h3>
-        <input onChange={event => handleInput(event.target.value)} type="text" />
+        
+
+        <input onChange={event => setNewTodo(event.target.value)} type="text" />
         <button onClick={() => addTodo() }>Add TODO</button>
         <h3>Search for Todo</h3>
         <input type="text"/>
 
             {
                 todos ?
-                <TodoList todos={todos}/>
+                <TodoList completedTodo={completedTodo} changeTitle={changeTitle} deleteTodo={deleteTodo}  todos={todos}/>
                 : null
             }
         </>

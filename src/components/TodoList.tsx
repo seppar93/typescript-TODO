@@ -4,11 +4,13 @@ import { ITodo } from './Todos'
 
 type TodoListProps = {
   todos: ITodo[];
-  // handleInput: () => void;
+  completedTodo: (id:number) => void;
+  changeTitle: () => void;
+  deleteTodo:() => void
 
 }
 
-export const TodoList = ({todos}: TodoListProps) => {
+export const TodoList = ({todos,completedTodo, changeTitle,deleteTodo }: TodoListProps) => {
   
 
 
@@ -19,7 +21,8 @@ export const TodoList = ({todos}: TodoListProps) => {
     <ul>
       {
         todos?.map((todo) => {
-         return  <li style={{textDecoration: 'none', listStyle: 'none'}} key={todo.id}><Todo todo={todo}/></li>
+         return  <li style={{textDecoration: 'none', listStyle: 'none'}} key={todo.id}>
+           <Todo completedTodo={completedTodo} deleteTodo={deleteTodo} changeTitle={changeTitle} todo={todo}/></li>
         }  )
       }
     </ul>
