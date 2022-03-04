@@ -6,3 +6,7 @@ type FormProps = {
     todos: Todo[]
     inputText:string;
 }
+
+type TodoListProps = {
+
+}
