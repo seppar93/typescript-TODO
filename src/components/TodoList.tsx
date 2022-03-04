@@ -1,33 +1,18 @@
-import { useEffect, useState } from 'react'
-import { Todo } from './Todo'
-import { ITodo } from './Todos'
+import React from 'react'
 
 type TodoListProps = {
-  todos: ITodo[];
-  completedTodo: (id:number) => void;
-  changeTitle: () => void;
-  deleteTodo:() => void
 
 }
 
-export const TodoList = ({todos,completedTodo, changeTitle,deleteTodo }: TodoListProps) => {
-  
-
-
+const TodoList = () => {
   return (
-    <>
-    <h3>Your current TODOS </h3>
+    <div className='todo-container'>
+        <ul className='todo-list'>
 
-    <ul>
-      {
-        todos?.map((todo) => {
-         return  <li style={{textDecoration: 'none', listStyle: 'none'}} key={todo.id}>
-           <Todo completedTodo={completedTodo} deleteTodo={deleteTodo} changeTitle={changeTitle} todo={todo}/></li>
-        }  )
-      }
-    </ul>
-
-    </>
-
+        </ul>
+       
+    </div>
   )
 }
+
+export default TodoList

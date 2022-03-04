@@ -1,14 +1,18 @@
-import React from 'react';
-import './App.css';
-import { TodoList } from './components/TodoList';
-import { Todos } from './components/Todos';
+import React, { useState } from 'react';
+import { Form } from './components/Form';
+import TodoList from './components/TodoList';
+
 
 // https://jsonplaceholder.typicode.com/users/1/todos
 function App() {
+  const [inputText, setInputText] = useState<string>('')
   return (
     <div className="App">
-      <h1>Typescript TODO</h1>
-      <Todos/>
+      <header>
+        <h1>Your TODOs</h1>
+      </header>
+       <Form/>
+       <TodoList/>
     </div>
   );
 }
