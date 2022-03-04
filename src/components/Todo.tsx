@@ -1,7 +1,19 @@
 import React from 'react'
+import { ITodo } from './Todos';
 
-export const Todo = () => {
+type TodoProps = {
+  todo: ITodo;
+  changeTitle: () => void;
+  deleteTodo: () => void;
+  completedTodo: () => void;
+};
+
+export const Todo = ({ todo, completedTodo, deleteTodo, changeTitle }: TodoProps) => {
   return (
-    <div>Todo</div>
+    <div>
+      <input type="text" value={todo.title} />
+      <button onClick={() => completedTodo()}>Completed</button> 
+      <button onClick={() => deleteTodo()} >Delete Todo</button>
+    </div>
   )
 }

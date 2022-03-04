@@ -1,26 +1,15 @@
 import { useEffect, useState } from 'react'
+import { Todo } from './Todo'
+import { ITodo } from './Todos'
 
-interface ITodo {
-  userId: number,
-  id:number,
-  title:string,
-  completed:boolean
+type TodoListProps = {
+  todos: ITodo[];
+  // handleInput: () => void;
+
 }
 
-export const TodoList = () => {
-  const [todos, setTodos] = useState<null|ITodo[]>(null)
-  const url = 'https://jsonplaceholder.typicode.com/users/1/todos'
-  async function fetchTodos() {
-    const response = await fetch(url)
-    const data = await response.json()
-    console.log(data);
-    
-    setTodos(data)
-  }
-
-  useEffect(() => {
-    fetchTodos()
-  },[])
+export const TodoList = ({todos}: TodoListProps) => {
+  
 
 
   return (
@@ -30,7 +19,7 @@ export const TodoList = () => {
     <ul>
       {
         todos?.map((todo) => {
-         return  <li key={todo.id}>{todo.title}</li>
+         return  <li key={todo.id}><Todo todo={todo}/></li>
         }  )
       }
     </ul>
