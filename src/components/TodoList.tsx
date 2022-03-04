@@ -19,7 +19,7 @@ export const TodoList = ({todos}: TodoListProps) => {
     <ul>
       {
         todos?.map((todo) => {
-         return  <li key={todo.id}><Todo todo={todo}/></li>
+         return  <li style={{textDecoration: 'none', listStyle: 'none'}} key={todo.id}><Todo todo={todo}/></li>
         }  )
       }
     </ul>
