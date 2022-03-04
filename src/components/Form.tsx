@@ -1,19 +1,28 @@
 import React from 'react'
+import { FormProps } from '../types';
 
-type FormProps = {
-    
-}
+
 enum Actions  {
     All,
     Completed,
     Uncompleted
 }
 
-export const Form = () => {
+export const Form = ({setInputText,setTodos,todos,inputText}: FormProps) => {
+    const inputTextHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+        console.log(e.target.value);
+        setInputText(e.target.value)
+    }
+    const submitTodoHandler = (e:React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault()
+    setTodos([...todos, {text:inputText, completed: false, id: Math.random( ) * 1000}])
+    setInputText('')
+    }
+
   return (
       <form action="">
-          <input type="text" className='todo-input' />
-          <button className='todo-button' type='submit'>
+          <input value={inputText} onChange={inputTextHandler} type="text" className='todo-input' />
+          <button onClick={submitTodoHandler} className='todo-button' type='submit'>
               <i className='fas fa-plus-square'></i>
           </button>
           <div className='select'>
