@@ -1,12 +1,23 @@
 import { Todo } from "./ITodo";
 
-type FormProps = {
+export type FormProps = {
     setInputText: (e:string) => void;
     setTodos: SetStateAction<Todo[]>;
-    todos: Todo[]
+    todos: Todo[];
     inputText:string;
+    setTodos: SetStateAction<Todo[]>;
+
 }
 
-type TodoListProps = {
+export type TodoListProps = {
+    todos: Todo[];
+    setTodos: SetStateAction<Todo[]>;
+
+}
+export type TodoProps = {
+    todo: Todo;
+    todos: Todo[];
+
+    setTodos: SetStateAction<Todo[]>;
 
 }

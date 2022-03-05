@@ -1,13 +1,20 @@
 import React from 'react'
+import { TodoListProps } from '../types'
 import Todo from './Todo'
 
 
 
-const TodoList = () => {
-  return (
-    <div className='todo-container'>
+
+const TodoList = ({todos,setTodos }: TodoListProps) => {
+    
+    return (
+        <div className='todo-container'>
         <ul className='todo-list'>
-            <Todo/>
+            {
+                todos.map(todo => (
+                    <Todo todos={todos} setTodos={setTodos}  key={todo.id} todo={todo}/>
+                ))
+            }
         </ul>
        
     </div>

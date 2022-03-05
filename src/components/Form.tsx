@@ -15,7 +15,7 @@ export const Form = ({setInputText,setTodos,todos,inputText}: FormProps) => {
     }
     const submitTodoHandler = (e:React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
-    setTodos([...todos, {text:inputText, completed: false, id: Math.random( ) * 1000}])
+    setTodos([...todos, {text:inputText, completed: false, id: Math.floor(Math.random( ) * 1000)}])
     setInputText('')
     }
 
