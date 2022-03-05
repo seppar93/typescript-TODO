@@ -6,12 +6,15 @@ export type FormProps = {
     todos: Todo[];
     inputText:string;
     setTodos: SetStateAction<Todo[]>;
+    setStatus:SetStateAction<Actions>;
 
 }
 
 export type TodoListProps = {
     todos: Todo[];
     setTodos: SetStateAction<Todo[]>;
+    filterdTodos:Todo[];
+
 
 }
 export type TodoProps = {
